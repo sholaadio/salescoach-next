@@ -382,7 +382,7 @@ export function CloserPortal({ user, users, teams, allReports, allLogs, allNoAns
     setShowOnboarding(false);
   };
 
-  const myTeam = teams[user.teamId];
+  const myTeam = teams?.[user?.teamId] ?? null;
   const teamType = myTeam?.type || "sales";
   const allMyReports = allReports.filter((r: any) => r.closerId === user.id);
   const myReports = filterByPeriod(allMyReports, "date", period).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -465,7 +465,7 @@ export function CloserPortal({ user, users, teams, allReports, allLogs, allNoAns
       <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
           <div style={{ fontSize: 13, fontWeight: 500, color: C.text }}>Your Commission Rules</div>
-          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#5b5b5e" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" title="Commission based on delivery rate">
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#5b5b5e" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <circle cx={12} cy={12} r={10} /><line x1={12} y1={8} x2={12} y2={12} /><line x1={12} y1={16} x2="12.01" y2={16} />
           </svg>
         </div>
